@@ -56,4 +56,4 @@ using filter `defer_javascript` which moves JS files down to page footer but
 had to turn it off later as it broke some JS navigation menus. Overall page
 load speed went down from around 10 seconds to 5 seconds on average. 
 
-{% img /images/newrelic.png New Relic Graph %}
+[New Relic Graph](/images/newrelic.png)
