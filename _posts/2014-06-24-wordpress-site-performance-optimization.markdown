@@ -3,14 +3,14 @@ layout: post
 title: WordPress site performance optimization
 date: 2014-06-24 13:10:51 +0400
 comments: true
-categories: 
+categories:
 ---
 
 Spent about a week working on optimizing performance of
 [WordPress](https://wordpress.org)-based web application. While site already had
 some optimizations in place, like [W3 Total Cache](https://wordpress.org/plugins/w3-total-cache/) backed by
 <abbr>APC</abbr> and `mod_pagespeed` installed, there still were complaints
-that site loads very slow. 
+that site loads very slow.
 
 Before making any action I started by measuring actual performance and gathered
 metrics using [New Relic](https://newrelic.com) and Chrome Developer Tools Audit
@@ -23,7 +23,7 @@ it by adding counter cache field to table instead of making select on depended
 records on each request and request time went down to around ~150 ms.  But
 these requests were still made on every page load so I patched both widgets to
 cache responses from external <abbr>API</abbr> in memcached for 5 minutes.
-Average page generation time went down to around ~800 ms. 
+Average page generation time went down to around ~800 ms.
 
 Another thing to optimize was W3 Total Cache. First I turned off its minify
 option as it was sometimes taking up 2-3 seconds according to New Relic. Next I
@@ -36,7 +36,7 @@ to extended disk so if page was cached then Apache would serve it directly
 without hitting any <abbr>PHP</abbr> code. As database queries were taking
 insignificant percentage of all page generation time I switched DB cache
 completely off to avoid <abbr>PHP</abbr> overhead and instead cranked up MySQL
-own query cache memory limits. 
+own query cache memory limits.
 
 With all these optimizations page generation time stabilized around ~600ms
 against ~2500 ms week ago and I called it a day - I don't think I can squeeze
@@ -54,6 +54,6 @@ had about 30-40 assets of each kind, and was able to reduce number of external
 CSS/JS down to 9-10 per page. I have also tried to optimize page loading by
 using filter `defer_javascript` which moves JS files down to page footer but
 had to turn it off later as it broke some JS navigation menus. Overall page
-load speed went down from around 10 seconds to 5 seconds on average. 
+load speed went down from around 10 seconds to 5 seconds on average.
 
-[New Relic Graph](/images/newrelic.png)
+![New Relic Graph](/images/newrelic.png)

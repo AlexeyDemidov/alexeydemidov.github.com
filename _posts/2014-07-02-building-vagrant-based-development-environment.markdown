@@ -11,7 +11,7 @@ published: true
 Over the course of the last few months I have built three different custom
 [Vagrant](http://www.vagrantup.com) boxes to create local development environment for two different
 applications &mdash; one is [WordPress](http://wordpress.org) based and another is Rails one with a few <abbr>PHP</abbr>
-parts. 
+parts.
 
 The problem which Vagrant solved was that both applications are too complex to
 setup manually. Even when working with [WordPress](http://wordpress.org)
@@ -39,7 +39,7 @@ first trying to find what is the best current approach and which tools to use.
 Cookbook development completely changed over last year or two &mdash; there are now
 [test-kitchen](http://kitchen.ci), [berkshelf](http://berkshelf.com),
 [serverspec](http://serverspec.org) etc and all these tools are changing very
-fast &mdash; almost any tutorial older than a few months is obsolete. 
+fast &mdash; almost any tutorial older than a few months is obsolete.
 
 So far I have found following blog posts as the most current:
 
@@ -49,7 +49,7 @@ So far I have found following blog posts as the most current:
 
 In my setup I have followed the second one and cross-checked with the first
 article. I chose to include in my toolbox [test-kitchen](http://kitchen.ci), [berkshelf](http://berkshelf.com), [serverspec](http://serverspec.org),
-[chefspec](http://sethvargo.github.io/chefspec/), [foodcritic](http://acrmp.github.io/foodcritic/), 
+[chefspec](http://sethvargo.github.io/chefspec/), [foodcritic](http://acrmp.github.io/foodcritic/),
 [rubocop](https://github.com/bbatsov/rubocop) and wrap everything with [guard](http://guardgem.org/) (but later disabled `test-kitchen` run from `guard` as it was failing). In the beginning
 I started preparing custom Vagrant base box with [veewee](https://github.com/jedi4ever/veewee) but dropped it as I
 didn't really need anything custom and standard `chef/debian` box from
@@ -64,7 +64,7 @@ using `berks vendor cookbooks`. At first I used to include my own cookbooks as
 anyway I dropped this. Also I decided not to use
 [vagrant-berkshelf](https://github.com/berkshelf/vagrant-berkshelf) plugin to
 maintain cookbooks as it is
-[deprecated](https://sethvargo.com/the-future-of-vagrant-berkshelf/). 
+[deprecated](https://sethvargo.com/the-future-of-vagrant-berkshelf/).
 
 For each application I created individual cookbook and one cookbook for common
 configuration. Each cookbook has own `git` repo and follows standard layout
@@ -75,7 +75,7 @@ for MySQL and `monit` to support Debian squeeze and had to use alternative cookb
 for <abbr>PHP</abbr> as `phpmyadmin` cookbook depends on it. Each cookbook has multiple recipes: for
 Vagrant setup, for integration server setup and for live server setup as there
 is some differences between them &mdash; <abbr>SSL</abbr> support and while integration server
-runs `php-fpm` live server still uses `mod_php`. 
+runs `php-fpm` live server still uses `mod_php`.
 
 At first I followed quite strict <abbr>TDD</abbr>/<abbr>BDD</abbr> loop &mdash; create `serverspec` tests, then
 `chefspec` and then write recipe but after a while dropped `chefspec` tests as I
@@ -84,17 +84,17 @@ find writing `expect(chef_run).to include_recipe('apache2')` and then
 kitchen verify` is quite slow even with a lot of <abbr>RAM</abbr> and on <abbr>SSD</abbr> disk. I
 tried to speed up things by switching to <abbr>LXC</abbr> but `kitchen-lxc` seems to be broken
 and unsupported and using `vagrant-lxc` with `test-kitchen` isn't documented
-very well and requires building <abbr>LXC</abbr> base boxes manually using 
+very well and requires building <abbr>LXC</abbr> base boxes manually using
 [outdated instructions](http://fabiorehm.com/blog/2013/07/18/crafting-your-own-vagrant-lxc-base-box/)
 &mdash; some links to configuration templates are 404 and after you build base boxes
-recent Vagrant complains about outdated box format. My attempts to use 
+recent Vagrant complains about outdated box format. My attempts to use
 [more up to date scripts](https://github.com/fgrehm/vagrant-lxc-base-boxes) to build
 base box failed as these scripts just segfaulted on me and I didn't have time
 to fix them as manually built base boxes already working. Another issue
 is that my Linux Mint box had `sudo` configuration setting which caused
 `vagrant-lxc` to fail when used with `test-kitchen` and a couple weeks passed
 before [I found time to find a solution](http://stackoverflow.com/questions/23480155/vagrant-lxc-fails-to-start-when-run-from-test-kitchen)
-so all cookbooks were developed slowly using [VirtualBox](https://www.virtualbox.org/). 
+so all cookbooks were developed slowly using [VirtualBox](https://www.virtualbox.org/).
 
 But overall development went quite smoothly except for few PHP/WordPress
 surprises in the end &mdash; e.g. PHP with `short_open_tag` switched fails with
@@ -105,14 +105,14 @@ still ahead. When all cookbooks were ready and fully tested locally on Linux
 and Mac OS X it was time to deploy to Windows boxes where everything failed
 just at the very beginning &mdash; Vagrant was launching VirtualBox VMs but unable to
 `ssh` into them. Few days of remote debugging using email and I had found
-that even `vagrant init hashicorp/precise` failed to work on Windows so I 
+that even `vagrant init hashicorp/precise` failed to work on Windows so I
 got idea and tried to switch to 32-bit OS image which worked. Later I got RDP
 access to Window 8 box and launched VirtualBox directly which
 complained that VT-x is disabled (it needs to be enabled in BIOS and this
 feature is unavailable on Celeron processors) and it can't launch 64-bit image.
 Once I switched images to 32-bit all Windows users were able to use them
 without much problems, except occasional cases when developers didn't read
-documentation and forgot to use `git clone --recursive` and similar issues. 
+documentation and forgot to use `git clone --recursive` and similar issues.
 
 Another quite problematic issue with Windows was that it is impossible to
 create symbolic links on shared file system with default settings and Rails app
@@ -120,7 +120,7 @@ were deployed `capistrano` style and relied on symbolic links heavily. I had to
 revamp whole recipe for Rails app and remove all symbolic links to get it
 working on Vagrant under Windows. Another Rails specific issue is that `rvm`
 cookbooks needs special recipe `rvm::vagrant` to be included before any other
-recipe if it is run in Vagrant VM. 
+recipe if it is run in Vagrant VM.
 
 {% comment %}
 
