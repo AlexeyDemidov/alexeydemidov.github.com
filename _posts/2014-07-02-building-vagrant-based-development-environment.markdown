@@ -9,12 +9,12 @@ published: true
 ---
 
 Over the course of the last few months I have built three different custom
-[Vagrant](http://www.vagrantup.com) boxes to create local development environment for two different
-applications &mdash; one is [WordPress](http://wordpress.org) based and another is Rails one with a few <abbr>PHP</abbr>
+[Vagrant](https://www.vagrantup.com) boxes to create local development environment for two different
+applications &mdash; one is [WordPress](https://wordpress.org) based and another is Rails one with a few <abbr>PHP</abbr>
 parts.
 
 The problem which Vagrant solved was that both applications are too complex to
-setup manually. Even when working with [WordPress](http://wordpress.org)
+setup manually. Even when working with [WordPress](https://wordpress.org)
 developers didn't work locally but instead used to edit files directly on live
 server and even when we imported all code into `git` they started using
 integration server for day-to-day development and their workflow looked
@@ -29,7 +29,7 @@ At first I thought about distributing binary Vagrant box but I still needed to
 distribute application source code as `git` repository and Vagrantfile to
 configure sharing and I was too lazy to setup password protected directory on
 web server to download binary box and hand out all credentials to individual
-developers ([Vagrant Cloud for organizations](http://www.hashicorp.com/blog/vagrant-cloud-end-of-beta.html)
+developers ([Vagrant Cloud for organizations](https://www.hashicorp.com/blog/vagrant-cloud-end-of-beta.html)
 hadn't been available yet). So I decided to make one single `git` repo with
 Vagrant configuration and cookbooks and source code repo
 included as submodule.
@@ -37,8 +37,8 @@ included as submodule.
 It was a while since I did chef cookbook development so I googled a lot at
 first trying to find what is the best current approach and which tools to use.
 Cookbook development completely changed over last year or two &mdash; there are now
-[test-kitchen](http://kitchen.ci), [berkshelf](http://berkshelf.com),
-[serverspec](http://serverspec.org) etc and all these tools are changing very
+[test-kitchen](https://kitchen.ci), [berkshelf](https://berkshelf.com),
+[serverspec](https://serverspec.org) etc and all these tools are changing very
 fast &mdash; almost any tutorial older than a few months is obsolete.
 
 So far I have found following blog posts as the most current:
@@ -48,12 +48,12 @@ So far I have found following blog posts as the most current:
 - [Automating Cookbook Testing with Test-Kitchen, Berkshelf, Vagrant and Guard](https://micgo.net/automating-cookbook-testing-with-test-kitchen-berkshelf-vagrant-and-guard/)
 
 In my setup I have followed the second one and cross-checked with the first
-article. I chose to include in my toolbox [test-kitchen](http://kitchen.ci), [berkshelf](http://berkshelf.com), [serverspec](http://serverspec.org),
-[chefspec](http://sethvargo.github.io/chefspec/), [foodcritic](http://acrmp.github.io/foodcritic/),
-[rubocop](https://github.com/bbatsov/rubocop) and wrap everything with [guard](http://guardgem.org/) (but later disabled `test-kitchen` run from `guard` as it was failing). In the beginning
+article. I chose to include in my toolbox [test-kitchen](https://kitchen.ci), [berkshelf](https://berkshelf.com), [serverspec](https://serverspec.org),
+[chefspec](https://github.com/chefspec/chefspec), [foodcritic](https://www.foodcritic.io/),
+[rubocop](https://github.com/bbatsov/rubocop) and wrap everything with [guard](https://guardgem.org/) (but later disabled `test-kitchen` run from `guard` as it was failing). In the beginning
 I started preparing custom Vagrant base box with [veewee](https://github.com/jedi4ever/veewee) but dropped it as I
 didn't really need anything custom and standard `chef/debian` box from
-[vagrantcloud.com](http://vagrantcloud.com) worked well.
+[vagrantcloud.com](https://vagrantcloud.com) worked well.
 
 My main repo has very simple structure &mdash; `Gemfile` with `berkshelf`,
 `Berksfile` with all necessary cookbooks, `Vagrantfile` and `INSTALL` file with
@@ -85,7 +85,7 @@ kitchen verify` is quite slow even with a lot of <abbr>RAM</abbr> and on <abbr>S
 tried to speed up things by switching to <abbr>LXC</abbr> but `kitchen-lxc` seems to be broken
 and unsupported and using `vagrant-lxc` with `test-kitchen` isn't documented
 very well and requires building <abbr>LXC</abbr> base boxes manually using
-[outdated instructions](http://fabiorehm.com/blog/2013/07/18/crafting-your-own-vagrant-lxc-base-box/)
+[outdated instructions](https://fabiorehm.com/blog/2013/07/18/crafting-your-own-vagrant-lxc-base-box/)
 &mdash; some links to configuration templates are 404 and after you build base boxes
 recent Vagrant complains about outdated box format. My attempts to use
 [more up to date scripts](https://github.com/fgrehm/vagrant-lxc-base-boxes) to build
@@ -93,7 +93,7 @@ base box failed as these scripts just segfaulted on me and I didn't have time
 to fix them as manually built base boxes already working. Another issue
 is that my Linux Mint box had `sudo` configuration setting which caused
 `vagrant-lxc` to fail when used with `test-kitchen` and a couple weeks passed
-before [I found time to find a solution](http://stackoverflow.com/questions/23480155/vagrant-lxc-fails-to-start-when-run-from-test-kitchen)
+before [I found time to find a solution](https://stackoverflow.com/questions/23480155/vagrant-lxc-fails-to-start-when-run-from-test-kitchen)
 so all cookbooks were developed slowly using [VirtualBox](https://www.virtualbox.org/).
 
 But overall development went quite smoothly except for few PHP/WordPress

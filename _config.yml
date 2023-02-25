@@ -30,7 +30,7 @@ baseurl: ""  # the subpath of your site, e.g. /blog
 url: ""  # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: alexeydemidov
 github_username: AlexeyDemidov
-permalink: ":categories/:year/:month/:day/:title/"
+permalink: ":year/:month/:day/:title/"
 
 # Build settings
 theme: minima
