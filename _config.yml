@@ -39,6 +39,11 @@ remote_theme: "mmistakes/minimal-mistakes"
 # theme: jekyll-theme-minimal
 plugins:
   - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jemoji
+  - jekyll-include-cache
 
 # Exclude from processing.
 # The following items will not be processed, by default.
