@@ -27,13 +27,15 @@ simple_search: https://www.google.com/search
 description: Personal blog of Alex L. Demidov
 
 baseurl: ""  # the subpath of your site, e.g. /blog
+
 url: ""  # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: alexeydemidov
 github_username: AlexeyDemidov
 permalink: ":year/:month/:day/:title/"
 
 # Build settings
-theme: minima
+# theme: minima
+remote_theme: "mmistakes/minimal-mistakes"
 # theme: jekyll-theme-minimal
 plugins:
   - jekyll-feed
