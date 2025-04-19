@@ -21,11 +21,10 @@
 # in the templates via {{ site.myvariable }}.
 
 
-title: ""
+title: "Alex L. Demidov"
 email: alexeydemidov@gmail.com
 subtitle: ""
 author:
-  name: Alex L. Demidov
   avatar: "/images/alexd2014.png"
   bio: "I’m an all-around DevOps guy with a strong background in backend development (RoR)."
   location: "Tbilisi, Georgia"
