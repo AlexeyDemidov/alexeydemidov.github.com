@@ -36,11 +36,21 @@ author:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/alekseydemidov/"
+    - label: "StackExchange"
+      icon: "fab fa-stack-exchange"
+      url: "https://stackexchange.com/users/34093/alexd"
 
+search: true
 simple_search: https://www.google.com/search
 description: Personal blog of Alex L. Demidov
 
 baseurl: ""  # the subpath of your site, e.g. /blog
+
+analytics:
+  provider: "google-gtag"
+  google:
+    tracking_id: "G-MSYP4Y51VQ"
+    anonymize_ip: false
 
 url: ""  # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: alexeydemidov
@@ -111,3 +121,7 @@ defaults:
     values:
       layout: single
       author_profile: true
+      # sidebar:
+      #   - title: ""
+      #     image: https://stackexchange.com/users/flair/34093.png
+      #     image_alt: "profile for AlexD on Stack Exchange, a network of free, community-driven Q&amp;A sites"
