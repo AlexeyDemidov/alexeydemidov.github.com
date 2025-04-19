@@ -4,8 +4,8 @@ main:
     url: /
   - title: "Archive"
     url: /archive
-  - title: "Tags"
-    url: /tags
+  - title: "Categories"
+    url: /categories
   - title: "About"
     url: /about
   - title: "Contact"
