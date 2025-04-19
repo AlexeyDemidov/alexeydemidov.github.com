@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: Сборка русской версии Movable Type
 date: 2008-04-02 00:35:21 +04:00
 comments: true

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: Руссификация Movable Type 4.1
 date: 2008-03-24 14:59:10 +03:00
 comments: true

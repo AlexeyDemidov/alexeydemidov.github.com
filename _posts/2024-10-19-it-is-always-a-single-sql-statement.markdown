@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Why is it always just a single SQL statement causing a major performance regression?"
 date: 2024-10-19 11:11:13 +0400
 comments: true

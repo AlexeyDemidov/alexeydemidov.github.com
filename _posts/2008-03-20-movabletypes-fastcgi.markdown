@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: Ускорение Movable Types ( Apache и FastCGI )
 date: 2008-03-20 20:44:05 +03:00
 comments: true

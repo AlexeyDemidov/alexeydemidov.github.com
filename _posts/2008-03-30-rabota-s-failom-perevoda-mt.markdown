@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: Работа с файлом перевода Movable Type
 date: 2008-03-30 13:35:28 +04:00
 comments: true

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "hunt for the bug"
 date: 2014-06-08 14:41:46 +0400
 comments: true

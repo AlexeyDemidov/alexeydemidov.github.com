@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Building Vagrant-based development environment"
 date: 2014-07-02 10:32:42 +0400
 comments: true

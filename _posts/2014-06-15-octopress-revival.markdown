@@ -1,9 +1,9 @@
 ---
-layout: post
+layout: single
 title: "Octopress revival"
 date: 2014-06-15 13:46:37 +0400
 comments: true
-categories: 
+categories:
 ---
 
 Resurrected my standalone blog for the third time, this time again on

@@ -1,6 +1,6 @@
 ---
-layout: post
 title: "One infrastructure migration equals two disaster recoveries"
+layout: single
 date: 2025-02-08 14:49:14 +0400
 comments: true
 categories: DevOps

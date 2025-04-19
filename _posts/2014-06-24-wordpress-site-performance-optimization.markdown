@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: WordPress site performance optimization
 date: 2014-06-24 13:10:51 +0400
 comments: true
