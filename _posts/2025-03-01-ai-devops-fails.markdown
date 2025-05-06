@@ -27,7 +27,7 @@ suggested assigning the “reverse_dns” attribute, which doesn’t exist.
 Interestingly, with web search enabled, 4o was able to find the correct
 “aws_eip_domain_name” resource. Both Claude and o3 went back to suggesting
 using “local-exec” and inventing random resource names like “aws_ec2_address”,
-“aws_ec2_address_attribute”, “aws_eip_reverse_dns”. 
+“aws_ec2_address_attribute”, “aws_eip_reverse_dns”.
 
 I have noticed that o3 is much more stubborn, and if it goes a wrong way, it is
 almost impossible to correct - a few weeks ago, it tried to correct me that
