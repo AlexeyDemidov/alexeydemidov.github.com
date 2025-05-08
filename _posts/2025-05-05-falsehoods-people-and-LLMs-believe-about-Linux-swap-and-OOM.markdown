@@ -30,10 +30,10 @@ worse, causing swap thrashing and a slower OOM trigger.
 ###### Swap allows running workloads that exceed the system's physical memory
 False, once your active working set exceeds actual physical memory, you are for some swap thrashing.
 
-###### Swap size should be double the amount of the physical memory.
+###### Swap size should be double the amount of the physical memory.[^6]
 False. Unless the system has megabytes of memory instead of gigabytes. If you
 allocate more than a few GB of swap size, you are going for a long swap
-thrashing session when you run out of memory and before OOM gets triggered.[^6]
+thrashing session when you run out of memory and before OOM gets triggered.
 
 ###### Swap use begins based on the vm.swappiness threshold, e.g. when 40% of RAM remains for `vm.swappiness=40`. [^3]
 False. Before the introduction of [the split-LRU design](https://linux-mm.org/PageReplacementDesign) in kernel version 2.6.28
@@ -67,8 +67,8 @@ False, if the kernel hits the high water mark in any zone, then it is going to s
 ###### with vm.swappiness=100 kernel is going to swap out everything from memory right away
 False, if there is no memory pressure, the kernel isn't going to swap anything.
 ###### vm.swappiness=60 is too agressive
-False, the `vm.swappiness` value 60 means that `anon_prio` is assigned the
-value of 60 and `file_prio` the value of `200 - 60 = 140`. The resulting ratio
+False, the `vm.swappiness` value `60` means that `anon_prio` is assigned the
+value of `60` and `file_prio` the value of `200 - 60 = 140`. The resulting ratio
 `140/60` means that the kernel would evict `2.33` times more pages from the
 page cache than swap out anonymous pages.
 
@@ -82,14 +82,35 @@ As the documentation states:
 > swap on faster devices than the filesystem, values beyond 100 can be
 > considered
 
-###### vm.swappiness=10 is just the right setting
+###### vm.swappiness=10 is just the right setting and makes your system fast
 This value gives a ratio of 19 times preference for discarding page cache over
-swapping out. Maybe, if you are swapping to a floppy disk, this setting is just
-right.
+swapping out. Your system is going to have a lot of unused anon pages sitting
+around while churning through file cache pages, making it less effective.
 
+###### Swap won't happen if there is some free RAM.
+False. If a process runs within a cgroup with defined memory limits, it can be
+swapped out, even though the system still has a lot of free memory. Swap and
+OOM can also be triggered due to memory fragmentation when high-order
+allocation fails, even though there are a lot of free low-order pages.
+
+###### Swap happens just randomly, when kernel has nothing to do
+False. Swap happens when memory allocation brings the number of free memory
+pages below the low watermark specified for a memory zone. See `/proc/zoneinfo`
+and [this question on
+Unix.StackExchange](https://unix.stackexchange.com/q/533739/1027).
+
+###### Swapping over NFS is a good idea. [^5]
+False. It is very slow, and any packet lost/delayed on the network would cause the system to hang.
+
+###### OOM won't trigger if there is swap enabled.
+
+###### OOM won't trigger if there is some free RAM.
+
+###### OOM kills a random process.
 
 [^1]: [a ServerFault post](https://serverfault.com/questions/1179908/will-full-swap-slow-down-the-server-even-though-ram-is-free)
 [^2]: [a ServerFault post](https://serverfault.com/a/1180029/23022)
 [^3]: [an Ask Ubuntu post](https://askubuntu.com/questions/969065/why-is-swap-being-used-when-vm-swappiness-is-0/969072)
 [^4]: [Another Ask Ubuntu post](https://askubuntu.com/questions/103915/how-do-i-configure-swappiness)
-
+[^5]: [a Unix.StackExchage post](https://unix.stackexchange.com/q/794604/1027)
+[^6]: [These guys show you a warning if your system doesn't have the swap double the size of the memory](https://issues.hibernatingrhinos.com/issue/RDoc-1724) 
