@@ -70,7 +70,7 @@ What can we actually tell about the pages in the LRUs?
 
 -  The page at the head of the active list was accessed just recently. It was accessed once or twice, or a million times.
 - The page at the tail of the active list was accessed some time ago when it was added to the head of the list. It could have been accessed a million times or zero times while being in the active list.
-- The page at the head of the inactive list was just allocated.
+- The page at the head of the inactive list was just allocated or it was just pushed out of the active list where it spent unknown time and has been accessed zero or million times.
 - The page in the middle of the inactive list was allocated some time ago, and we don't know if it has been accessed yet. Until it is scanned, it can be accessed zero times or a million times.
 - The pages at the tail of the inactive list are only pages that have accurate information, but only when they are scanned.  We also still don't know if they were accessed more than once. We also don't know if they are going to be accessed again, but at least this is expected.
 
