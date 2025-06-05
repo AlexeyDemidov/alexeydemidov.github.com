@@ -24,8 +24,8 @@ GEM
       metrics (~> 0.12)
       traces (~> 0.15)
     base64 (0.2.0)
-    benchmark (0.4.0)
-    bigdecimal (3.1.9)
+    benchmark (0.4.1)
+    bigdecimal (3.2.2)
     coffee-script (2.4.1)
       coffee-script-source
       execjs
@@ -38,12 +38,12 @@ GEM
       fiber-annotation
       fiber-local (~> 1.1)
       json
-    csv (3.3.4)
+    csv (3.3.5)
     dnsruby (1.72.4)
       base64 (~> 0.2.0)
       logger (~> 1.6.5)
       simpleidn (~> 0.2.1)
-    drb (2.2.1)
+    drb (2.2.3)
     em-websocket (0.5.3)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0)
@@ -133,7 +133,7 @@ GEM
     http_parser.rb (0.8.0)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
-    io-event (1.10.0)
+    io-event (1.10.1)
     jekyll (3.10.0)
       addressable (~> 2.4)
       colorator (~> 1.0)
@@ -246,7 +246,7 @@ GEM
       gemoji (>= 3, < 5)
       html-pipeline (~> 2.2)
       jekyll (>= 3.0, < 5.0)
-    json (2.12.0)
+    json (2.12.2)
     kramdown (2.4.0)
       rexml
     kramdown-parser-gfm (1.1.0)
