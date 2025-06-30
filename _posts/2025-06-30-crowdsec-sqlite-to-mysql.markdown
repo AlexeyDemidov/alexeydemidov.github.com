@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "CrowdSec SQLite to MySQL migration"
-date: 2026-06-30 12:35:30 +0400
+date: 2025-06-30 12:35:30 +0400
 comments: true
 categories: Linux
 ---

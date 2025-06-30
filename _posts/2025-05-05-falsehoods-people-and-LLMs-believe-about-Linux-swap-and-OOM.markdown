@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "Falsehoods people (and LLMs) believe about Linux swap and OOM."
-date: 2026-05-05 12:00:00 +0400
+date: 2025-05-05 12:00:00 +0400
 comments: true
 categories: DevOps
 ---
