@@ -1,0 +1,55 @@
+---
+layout: archive
+---
+
+{{ content }}
+
+<h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
+
+{% if paginator %}
+  {% assign posts = paginator.posts %}
+{% else %}
+  {% assign posts = site.posts %}
+{% endif %}
+
+{% assign entries_layout = page.entries_layout | default: 'list' %}
+<div class="entries-{{ entries_layout }}">
+  {% for post in posts %}
+    {% if post.header.teaser %}
+      {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
+    {% else %}
+      {% assign teaser = site.teaser %}
+    {% endif %}
+
+    {% if post.id %}
+      {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+    {% else %}
+      {% assign title = post.title %}
+    {% endif %}
+
+    <div class="{{ entries_layout }}__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork"{% if post.locale %} lang="{{ post.locale }}"{% endif %}>
+        {% if entries_layout == "grid" and teaser %}
+          <div class="archive__item-teaser">
+            <img src="{{ teaser | relative_url }}" alt="">
+          </div>
+        {% endif %}
+        <h2 class="archive__item-title no_toc" itemprop="headline">
+          {% if post.link %}
+            <a href="{{ post.link }}">{{ title }}</a> <a href="{{ post.url | relative_url }}" rel="permalink"><i class="fas fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
+          {% else %}
+            <a href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
+          {% endif %}
+        </h2>
+        {% include page__meta.html type=entries_layout %}
+        <div class="archive__item-body" itemprop="articleBody">
+          {{ post.content }}
+        </div>
+      </article>
+    </div>
+  {% endfor %}
+</div>
+
+{% if paginator %}
+  {% include paginator.html %}
+{% endif %}
