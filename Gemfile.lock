@@ -53,7 +53,7 @@ GEM
       logger
     eventmachine (1.2.7)
     execjs (2.10.1)
-    faraday (2.14.1)
+    faraday (2.14.2)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
@@ -329,7 +329,7 @@ GEM
     uri (1.1.1)
     webrick (1.9.2)
     yell (2.2.2)
-    zeitwerk (2.7.5)
+    zeitwerk (2.8.0)
 
 PLATFORMS
   arm64-darwin-23
